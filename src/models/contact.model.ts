@@ -1,8 +1,4 @@
-type Contact = {
-  id: string;
-  name: string;
-  number: string;
-};
+import type { Contact } from "../types/contact.type";
 
 const contacts: Contact[] = [
   {

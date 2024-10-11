@@ -1,5 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { ContactService } from "../services/contact.service";
+import { CreateContact } from "../types/contact.type";
 
 export class ContactController {
   // Agenda Telefónica: Paso 1
@@ -48,6 +49,24 @@ export class ContactController {
         return;
       }
       res.json(deletedContact);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // Agenda Telefónica: Paso 5
+  static async addContact(req: Request, res: Response, next: NextFunction) {
+    try {
+      const contact: CreateContact = req.body;
+
+      const newId = Math.floor(Math.random() * 2000).toString();
+
+      const newContact = await ContactService.addContact({
+        id: newId,
+        ...contact,
+      });
+
+      res.json(newContact);
     } catch (error) {
       next(error);
     }

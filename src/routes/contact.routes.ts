@@ -11,5 +11,7 @@ router.get(PREFIX, ContactController.getContacts);
 router.get(`${PREFIX}/:id`, ContactController.getContactById);
 // Agenda Telefónica: Paso 4
 router.delete(`${PREFIX}/:id`, ContactController.deleteContact);
+// Agenda Telefónica: Paso 5
+router.post(`${PREFIX}`, ContactController.addContact);
 
 export default router;

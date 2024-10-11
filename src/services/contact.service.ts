@@ -1,4 +1,5 @@
 import contacts from "../models/contact.model";
+import type { Contact } from "../types/contact.type";
 
 export class ContactService {
   // Agenda Telefónica: Paso 1
@@ -22,5 +23,11 @@ export class ContactService {
     const deletedContact = contacts.splice(contactIndex, 1);
 
     return deletedContact;
+  }
+
+  // Agenda Telefónica: Paso 5
+  static async addContact(contact: Contact) {
+    contacts.push(contact);
+    return contact;
   }
 }
