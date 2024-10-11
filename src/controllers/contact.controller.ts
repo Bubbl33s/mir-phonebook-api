@@ -59,6 +59,19 @@ export class ContactController {
     try {
       const contact: CreateContact = req.body;
 
+      // Agenda Telefónica: Paso 6
+      // Validar que el nombre y número de teléfono no estén vacíos
+      if (!contact.name || !contact.number) {
+        res.status(400).json({ "Error 400": "Name and number are required" });
+        return;
+      }
+
+      // Validar que el nombre no esté duplicado
+      if (await ContactController.nameExists(contact.name)) {
+        res.status(400).json({ "Error 400": `Name must be unique` });
+        return;
+      }
+
       const newId = Math.floor(Math.random() * 2000).toString();
 
       const newContact = await ContactService.addContact({
@@ -70,5 +83,14 @@ export class ContactController {
     } catch (error) {
       next(error);
     }
+  }
+
+  // Agenda Telefónica: Paso 6
+  static async nameExists(name: string) {
+    const contacts = await ContactService.getContacts();
+    return contacts.some(
+      // lowercase para una mejor comparación
+      (contact) => contact.name.toLowerCase() === name.toLowerCase(),
+    );
   }
 }
