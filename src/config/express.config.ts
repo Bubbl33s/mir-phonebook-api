@@ -17,5 +17,6 @@ export default function setupApp(app: Application) {
 
   app.use(helmet());
   app.use(compression());
-  app.use(morgan("dev"));
+  // Agenda Telefónica: Paso 7
+  app.use(morgan("tiny"));
 }
