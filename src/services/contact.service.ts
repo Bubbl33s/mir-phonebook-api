@@ -5,4 +5,9 @@ export class ContactService {
   static async getContacts() {
     return contacts;
   }
+
+  // Agenda Telefónica: Paso 3
+  static async getContactById(id: string) {
+    return contacts.find((contact) => contact.id === id);
+  }
 }
