@@ -1,13 +1,19 @@
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { ContactService } from "../services/contact.service";
 
 export class ContactController {
-  static async getContacts(_: Request, res: Response) {
+  // Agenda Telefónica: Paso 1
+  static async getContacts(_: Request, res: Response, next: NextFunction) {
     try {
       const contacts = await ContactService.getContacts();
+
+      if (!contacts) {
+        res.status(404).json({ message: "Contacts not found" });
+        return;
+      }
       res.json(contacts);
     } catch (error) {
-      res.status(500).json({ message: "error" });
+      next(error);
     }
   }
 }

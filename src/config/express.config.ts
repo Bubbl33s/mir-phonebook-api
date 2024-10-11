@@ -4,6 +4,7 @@ import helmet from "helmet";
 import compression from "compression";
 import morgan from "morgan";
 
+// Configuración de la aplicación
 export default function setupApp(app: Application) {
   const corsOptions = {
     origin: "http://localhost:5173",
