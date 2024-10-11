@@ -10,4 +10,17 @@ export class ContactService {
   static async getContactById(id: string) {
     return contacts.find((contact) => contact.id === id);
   }
+
+  // Agenda Telefónica: Paso 4
+  static async deleteContact(id: string) {
+    const contactIndex = contacts.findIndex((contact) => contact.id === id);
+
+    if (contactIndex === -1) {
+      return null;
+    }
+
+    const deletedContact = contacts.splice(contactIndex, 1);
+
+    return deletedContact;
+  }
 }

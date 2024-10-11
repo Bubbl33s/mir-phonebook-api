@@ -9,5 +9,7 @@ const PREFIX = "/persons";
 router.get(PREFIX, ContactController.getContacts);
 // Agenda Telefónica: Paso 3
 router.get(`${PREFIX}/:id`, ContactController.getContactById);
+// Agenda Telefónica: Paso 4
+router.delete(`${PREFIX}/:id`, ContactController.deleteContact);
 
 export default router;

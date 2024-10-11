@@ -34,4 +34,22 @@ export class ContactController {
       next(error);
     }
   }
+
+  // Agenda Telefónica: Paso 4
+  static async deleteContact(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const deletedContact = await ContactService.deleteContact(id);
+
+      if (!deletedContact) {
+        res
+          .status(404)
+          .send({ "Error 404": `Contact with ID ${id} not found` });
+        return;
+      }
+      res.json(deletedContact);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

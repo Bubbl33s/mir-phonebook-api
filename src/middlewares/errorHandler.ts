@@ -8,8 +8,8 @@ export default function errorHandler(
   __: NextFunction,
 ) {
   if (err instanceof Error) {
-    res.status(400).json({ error: err.message });
+    res.status(400).json({ "error 400": err.message });
   } else {
-    res.status(500).json({ error: "Error interno del servidor" });
+    res.status(500).json({ "error 500": "Error interno del servidor" });
   }
 }
